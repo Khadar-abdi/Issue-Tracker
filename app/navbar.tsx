@@ -25,7 +25,6 @@ const Navbar = () => {
   return (
     <nav className=" flex h-16  w-screen items-center space-x-7 px-5 mb-5 border-b ">
        
-           
             <Link href={'/'} className="text-2xl font-bold"> <BugIcon/>  </Link>
             <div>
                 {NavLinks.map((link) => (
@@ -35,17 +34,13 @@ const Navbar = () => {
                        'text-slate-900 ' :  link.href=== currentPath,
                        'text-slate-500 ' :  link.href!== currentPath,
                        'mx-4 font-medium font-sans hover:text-slate-700  transition-colors': true
-
-
                     }) }>
                         {link.label}
                     </Link>
                 ))}
                  
             </div>
-          
-     
-        
+           
     </nav>
   )
 }
