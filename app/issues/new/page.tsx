@@ -1,5 +1,5 @@
 'use client'
-import { Button, Callout, TextField } from '@radix-ui/themes'
+import { Button, Callout, Spinner, TextField } from '@radix-ui/themes'
 import React, { useState } from 'react'
 import "easymde/dist/easymde.min.css";
 import dynamic from 'next/dynamic';
@@ -73,7 +73,7 @@ const page = () => {
              {  <ErrorMessage>{errors.description?.message} </ErrorMessage> }
             {/* <SimpleMdeReact placeholder='Issue Description' className='max-w-full'  /> */}
 
-            <Button disabled={isSubmitting} type='submit'  >Submit New Issue {isSubmitting && <LoaderIcon />} </Button>
+            <Button disabled={isSubmitting} type='submit'  >Submit New Issue {isSubmitting && <Spinner />} </Button>
 
         </form>
         </div>
