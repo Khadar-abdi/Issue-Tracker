@@ -10,6 +10,7 @@ import { LoaderIcon } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import  {z} from 'zod';
 import { IssueSchema } from '@/Schemas/validationSchema';
+import ErrorMessage from '@/app/components/ErrorMessage';
 
 const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), { ssr: false });
 
@@ -61,7 +62,7 @@ const page = () => {
           
 
             <TextField.Root className='text-slate-500 font-sans ' placeholder='Issue Title' {...register('title')} />
-            { errors.title && <p className='text-red-500'>{errors.title?.message} </p> }
+            {  <ErrorMessage>{errors.title?.message} </ErrorMessage> }
             <Controller
                 name='description'
                 control={control}
@@ -69,7 +70,7 @@ const page = () => {
                     <SimpleMdeReact {...field} placeholder='Issue Description' className='max-w-full' />
                 )}
             />
-             { errors.description &&  <p  className='text-red-500'>{errors.description?.message} </p> }
+             {  <ErrorMessage>{errors.description?.message} </ErrorMessage> }
             {/* <SimpleMdeReact placeholder='Issue Description' className='max-w-full'  /> */}
 
             <Button disabled={isSubmitting} type='submit'  >Submit New Issue {isSubmitting && <LoaderIcon />} </Button>
