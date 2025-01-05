@@ -25,9 +25,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={`${inter.variable} max-w-screen w-screen`}  >
 
-        <Theme accentColor="brown" radius="large">
+        <Theme accentColor="brown" radius="large" >
           <Navbar />
           <main className="p-5">  {children}  </main>
 
