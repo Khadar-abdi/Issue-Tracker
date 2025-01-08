@@ -29,9 +29,9 @@ const page = async ({params}: props) => {
     // Issue Details
      
     <div className='grid grid-cols-2  max-w-screen w-full '>
-        <div className='flex flex-col items-center w-full gap-5  '> 
-            <Heading className='text-slate-600 text-2xl font-sans font-medium'>{issue?.title}</Heading>
-            <div className='w-full h-auto shadow shadow-[#ffeed5] rounded p-4 prose'>
+        <div className='flex flex-col px-10 w-full   '> 
+            <Heading className='text-slate-600 text-4xl font-sans font-medium px-4'>{issue?.title}</Heading>
+            <div className='w-full h-auto shadow shadow-[#ffeed5] rounded px-4 prose'>
                 <ReactMarkdown className='text-slate-500 text-base font-sans tracking-tight'>{issue?.description}</ReactMarkdown>
             </div>
 
