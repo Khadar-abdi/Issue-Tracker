@@ -3,13 +3,15 @@ import { Button, Table } from '@radix-ui/themes'
 import Link from '../components/customLink'
 import React, { useState } from 'react'
 import IssueBadge from '../components/IssueBadge'
-import delay from 'delay'
+import { notFound } from 'next/navigation'
 
 
 const IssuePage = async() => {
  
   
   const Issues= await prisma.issue.findMany()
+
+  if(!Issues) return notFound();
  
  
  
