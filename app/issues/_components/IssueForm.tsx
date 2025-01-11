@@ -35,11 +35,18 @@ const IssueForm =   ({issue}: {issue?: Issue}) => {
 
         try {
 
-            const response = await axios.post('/api/issue', data)
-            if (response.status === 201) {
-                router.push('/issues')
+            if(issue){
+                  await axios.patch(`/api/issue/${issue.id}`, data)
+            } else{
+            await axios.post('/api/issue', data)
 
             }
+            
+            router.push('/issues')
+
+           
+
+           
         } catch (error) {
             setError('An unexpected error occured, please try again.')
         }
@@ -71,7 +78,7 @@ const IssueForm =   ({issue}: {issue?: Issue}) => {
                 {<ErrorMessage>{errors.description?.message} </ErrorMessage>}
              
 
-                <Button disabled={isSubmitting} type='submit'  > {issue ? 'Edit' : 'Submit New' } Issue {isSubmitting && <Spinner />} </Button>
+                <Button disabled={isSubmitting} type='submit'  > {issue ? 'Edit Issue' : 'Submit New Issue' }  {isSubmitting && <Spinner />} </Button>
 
             </form>
         </div>
