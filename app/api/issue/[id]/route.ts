@@ -1,11 +1,10 @@
 import prisma from "@/prisma/client";
 import { IssueSchema } from "@/Schemas/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
+
  
 
-
-
-export async function POST( request:NextRequest){
+export async function PATCH( request: NextRequest,{params}: {params: { id: string}}){
     const body = await request.json();
     const validation =  IssueSchema.safeParse(body);
 
@@ -13,14 +12,22 @@ export async function POST( request:NextRequest){
         return NextResponse.json({error: validation.error.format()}, {status: 400});
     }
 
-    const newIssue = await prisma.issue.create({
+   const issue= await prisma.issue.findUnique({
+        where:{  id: parseInt(params.id) },
+       
+    })
+
+    if(!issue) 
+        return  NextResponse.json({issue: "invalid Issue"}, { status: 404})
+
+    const UpdatedIssue = await prisma.issue.update({
+        where:{  id: issue.id },
         data:{
             title: validation.data.title,
             description: validation.data.description
         }
     })
 
-    return NextResponse.json(newIssue, {status: 201});
+    return NextResponse.json(UpdatedIssue, {status: 201});
 
 }
-
