@@ -21,10 +21,10 @@ export async function PATCH( request: NextRequest,{params}: {params: { id: strin
         return  NextResponse.json({issue: "invalid Issue"}, { status: 404})
 
     const UpdatedIssue = await prisma.issue.update({
-        where:{  id: issue.id },
+        where:{  id: parseInt(params.id) },
         data:{
-            title: validation.data.title,
-            description: validation.data.description
+            title: issue.title,
+            description: issue.description
         }
     })
 

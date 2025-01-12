@@ -1,6 +1,7 @@
  'use client'
 import { IssueSchema } from '@/Schemas/validationSchema';
 import ErrorMessage from '@/app/components/ErrorMessage';
+import IssueFormSkeleton from '@/app/components/skeleton';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Issue } from '@prisma/client';
 import { Button, Callout, Spinner, TextField } from '@radix-ui/themes';
@@ -12,7 +13,11 @@ import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), { ssr: false });
+const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'), 
+{
+    ssr: false ,
+   
+    });
 
 
 
@@ -35,14 +40,14 @@ const IssueForm =   ({issue}: {issue?: Issue}) => {
 
         try {
 
-            if(issue){
-                  await axios.patch(`/api/issue/${issue.id}`, data)
-            } else{
+            if(issue) 
+            await axios.put(`/api/issue/${issue.id}`, data)
+             else 
             await axios.post('/api/issue', data)
 
-            }
-            
+             
             router.push('/issues')
+            router.refresh();
 
            
 
