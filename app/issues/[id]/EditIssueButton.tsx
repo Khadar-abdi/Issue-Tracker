@@ -6,7 +6,7 @@ import React from 'react'
 const EditIssueButton = ({issueId}: {issueId: number}) => {
   return (
 
-    <Link href={`/issues/${issueId}/edit`  } ><Button className='flex flex-row space-x-5' > Edit <Edit/></Button></Link>
+    <Link href={`/issues/edit/${issueId}`  } ><Button className='flex flex-row space-x-5' > Edit <Edit/></Button></Link>
  
   )
 }

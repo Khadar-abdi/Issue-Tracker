@@ -1,8 +1,8 @@
 import prisma from '@/prisma/client'
 import { Button, Table } from '@radix-ui/themes'
-import Link from '../components/customLink'
+import Link from '../../components/customLink'
 import React, { useState } from 'react'
-import IssueBadge from '../components/IssueBadge'
+import IssueBadge from '../../components/IssueBadge'
 import { notFound } from 'next/navigation'
 
 

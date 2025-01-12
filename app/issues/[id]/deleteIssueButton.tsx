@@ -21,7 +21,7 @@ const DeleteIssue= async ()=>{
   
     setLoading(true)
     await axios.delete(`/api/issue/${issueId}`)
-    router.push('/issues')
+    router.push('/issues/list')
     router.refresh();
     
   } catch (error) {
