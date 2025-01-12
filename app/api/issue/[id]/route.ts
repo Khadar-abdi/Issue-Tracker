@@ -1,7 +1,6 @@
 import prisma from "@/prisma/client";
 import { IssueSchema } from "@/Schemas/validationSchema";
 import { NextRequest, NextResponse } from "next/server";
-import { error } from "node:console";
 
  
 
