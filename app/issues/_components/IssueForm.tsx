@@ -41,7 +41,7 @@ const IssueForm =   ({issue}: {issue?: Issue}) => {
         try {
 
             if(issue) 
-            await axios.put(`/api/issue/${issue.id}`, data)
+            await axios.patch(`/api/issue/${issue.id}`, data)
              else 
             await axios.post('/api/issue', data)
 
@@ -54,13 +54,14 @@ const IssueForm =   ({issue}: {issue?: Issue}) => {
            
         } catch (error) {
             setError('An unexpected error occured, please try again.')
+            console.log(error)
         }
  
     }
  
     return (
         <div className='max-w-xl space-y-5'>
-            <h1 className=' text-slate-400 text-xl my-3 font-sans font-semibold' > Create Issue </h1>
+            <h1 className=' text-slate-400 text-xl my-3 font-sans font-semibold' > {issue ? 'Edit  ' : '  New  ' } Issue </h1>
 
             {error && <Callout.Text color='red' className='text-[#f76c6c] text-sm '> {error}</Callout.Text>}
 
