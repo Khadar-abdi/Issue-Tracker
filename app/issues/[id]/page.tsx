@@ -2,6 +2,7 @@ import prisma from '@/prisma/client'
 import { notFound } from 'next/navigation'
 import EditIssueButton from './EditIssueButton'
 import IssueDetails from './IssueDetails'
+import DeleteIssueButton from './deleteIssueButton'
 
 
 interface props {
@@ -22,12 +23,13 @@ const page = async ({ params }: props) => {
     return (
         // Issue Details
 
-        <div className='flex flex-row flex-wrap max-w-screen px-20 w-full  '>
-            <div className='flex flex-col  w-1/2  space-y-4   '>
-                <IssueDetails issue={issue} />                
-            </div>
-            <div className='w-fit'>
-                <EditIssueButton issueId={issue.id} />
+        <div className='flex flex-row flex-wrap max-w-screen px-10  '>
+            
+                <IssueDetails issue={issue}   />                
+         
+            <div className='w-fit flex   gap-5 mt-3  '>
+                <EditIssueButton  issueId={issue.id} />
+                <DeleteIssueButton issueId={issue.id} />
             </div>
  
         </div>
