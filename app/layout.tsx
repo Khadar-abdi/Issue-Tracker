@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import Navbar from './navbar'
 import "@radix-ui/themes/styles.css";
 import { Container, Theme, ThemePanel } from "@radix-ui/themes";
+import AuthProvider from "./auth/Provider"
 
 
 
@@ -26,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} max-w-screen w-screen`}  >
-
+        <AuthProvider>
+           
         <Theme accentColor="brown" radius="large" >
           <Navbar />
           <main  > 
@@ -34,8 +36,8 @@ export default function RootLayout({
           {children} 
             </Container>
              </main>
-
         </Theme >
+        </AuthProvider>
       </body>
     </html>
   )
