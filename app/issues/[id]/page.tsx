@@ -23,7 +23,7 @@ const page = async ({ params }: props) => {
     return (
         // Issue Details
 
-        <div className='flex flex-row flex-wrap max-w-screen px-10  '>
+        <div className='flex flex-row flex-wrap max-w-screen    '>
             
                 <IssueDetails issue={issue}   />                
          
