@@ -5,6 +5,7 @@ import IssueDetails from './IssueDetails'
 import DeleteIssueButton from './deleteIssueButton'
 import { getServerSession } from 'next-auth'
 import authOptions from '@/app/auth/authOptions'
+import AssignIssue from './assignIssue'
 
 
 interface props {
@@ -27,13 +28,17 @@ const page = async ({ params }: props) => {
     return (
         // Issue Details
 
-        <div className='flex flex-row flex-wrap max-w-screen    '>
+        <div className='flex flex-row flex-wrap max-w-screen w-fit     '>
             
                 <IssueDetails issue={issue}   />                
          
-           { session && <div className='w-fit flex   gap-5 mt-3  '>
+           { session && <div className='flex   justify-center  w-[30%]       mt-3  '>
+            <div className=' flex  w-3/5   flex-col    gap-5 mt-3   '>
+
+           <AssignIssue/>
                 <EditIssueButton  issueId={issue.id} />
                 <DeleteIssueButton issueId={issue.id} />
+            </div>
             </div>}
  
         </div>

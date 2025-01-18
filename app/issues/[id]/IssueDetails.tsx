@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown'
 
 const IssueDetails = ({issue}: {issue: Issue}) => {
   return (
-    <div className='flex flex-col  w-4/5 space-y-4   '>
+    <div className='flex flex-col  w-[70%] space-y-4   '>
         <Heading className='text-slate-600 w-full text-4xl font-sans font-medium px-4  '>{issue?.title}</Heading>
                 <div className='flex flex-row items-center gap-4 w-full px-4   '>
                     <IssueBadge  Status={issue?.status ?? 'OPEN'}  />

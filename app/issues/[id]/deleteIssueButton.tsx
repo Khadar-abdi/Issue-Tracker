@@ -36,9 +36,9 @@ const DeleteIssue= async ()=>{
   return (
     <>
 
-    <AlertDialog.Root>
+    <AlertDialog.Root >
       <AlertDialog.Trigger>
-     <Button   variant='soft' className='flex flex-row space-x-5 text-sm ' disabled={loading}  > Delete {loading && <Spinner />} </Button> 
+     <Button   variant='soft' className='flex    flex-row space-x-5 text-sm ' disabled={loading}  > Delete {loading && <Spinner />} </Button> 
 
       </AlertDialog.Trigger>
       <AlertDialog.Content>
