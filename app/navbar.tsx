@@ -1,16 +1,89 @@
 'use client'
-import Link from 'next/link'
-import React from 'react'
-import { BugIcon, Text } from 'lucide-react'
-import { usePathname } from 'next/navigation'
-import classnames from 'classnames'
 import { Avatar, Box, Container, DropdownMenu, Flex } from '@radix-ui/themes'
+import classnames from 'classnames'
+import delay from 'delay'
+import { BugIcon } from 'lucide-react'
 import { useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
+
 
 const Navbar = () => {
 
-    const currentPath = usePathname();
+    
+
+    return (
+        <nav className="   h-16    px-5 py-4 mb-5 border-b ">
+            <Container>
+
+                <Flex gap="3" justify={'between'} >
+                    <Box>
+                        <AuthLinks/>
+                    </Box>
+                    <Box>
+                        <AuthStatus/>
+                    </Box>
+                    
+                </Flex>
+
+
+            </Container>
+
+        </nav>
+    )
+};
+
+const AuthStatus =   ()=>{
     const { status, data: session } = useSession()
+    
+    if(status === 'loading') return  <Skeleton width="3"/>
+ 
+
+    if(status === 'unauthenticated') 
+        return <Link href={'/api/auth/signin'} className='text-slate-600 text-base font-medium'>Signin</Link>
+
+    return (
+        <>
+                   
+                            <DropdownMenu.Root>
+                                <DropdownMenu.Trigger>
+                                    <Avatar
+                                        src={session!.user!.image!}
+                                        fallback='?'
+                                        size={'2'}
+                                        radius='full'
+                                        className='cursor-pointer'
+                                        referrerPolicy='no-referrer'
+                                        
+                                    />
+
+                                </DropdownMenu.Trigger>
+                                <DropdownMenu.Content>
+
+                              
+                                        <DropdownMenu.Label> 
+                                          
+                                            {session!.user!.email}    
+                                        </DropdownMenu.Label>
+                               
+                                    <DropdownMenu.Item>
+                                        <Link href={'/api/auth/signout'}> Signout</Link>
+                                    </DropdownMenu.Item>
+                                </DropdownMenu.Content>
+                            </DropdownMenu.Root>
+                       
+
+                      
+                        
+                    </>
+    )
+};
+
+const AuthLinks=()=>{
+    const currentPath = usePathname();
+
 
 
     const NavLinks = [
@@ -24,13 +97,8 @@ const Navbar = () => {
         },
 
     ]
-
     return (
-        <nav className="   h-16    px-5 py-4 mb-5 border-b ">
-            <Container>
-
-                <Flex gap="3" justify={'between'} >
-                    <Flex align='center'>
+        <Flex align='center'>
                         <Link href={'/'} className="text-2xl font-bold"> <BugIcon />  </Link>
                         <ul className='flex space-x-2'>
                             {NavLinks.map((link) => (
@@ -38,9 +106,9 @@ const Navbar = () => {
                                     <Link
                                         href={link.href}
                                         className={classnames({
-                                            'text-slate-900 ': link.href === currentPath,
-                                            'text-slate-500 ': link.href !== currentPath,
-                                            'mx-4 font-medium font-sans hover:text-slate-700  transition-colors': true
+                                            "nav-link" : true,
+                                            '!text-slate-900 ': link.href === currentPath,
+                                            'mx-4 font-medium font-sans hover:text-slate-700  transition-colors ': true
                                         })}>
                                         {link.label}
                                     </Link>
@@ -49,45 +117,7 @@ const Navbar = () => {
 
                         </ul>
                     </Flex>
-                    <Box>
-                        {status === 'authenticated' && (
-                            <DropdownMenu.Root>
-                                <DropdownMenu.Trigger>
-                                    <Avatar
-                                        fallback='?'
-                                        src={session.user!.image!}
-                                        size={'2'}
-                                        radius='full'
-                                        className='cursor-pointer'
-                                        
-                                    />
-
-                                </DropdownMenu.Trigger>
-                                <DropdownMenu.Content>
-
-                              
-                                        <DropdownMenu.Label> 
-                                          
-                                            {session.user!.email}    
-                                        </DropdownMenu.Label>
-                               
-                                    <DropdownMenu.Item>
-                                        <Link href={'/api/auth/signout'}> Signout</Link>
-                                    </DropdownMenu.Item>
-                                </DropdownMenu.Content>
-                            </DropdownMenu.Root>
-                        )}
-
-                        {/* // <Link href={'/api/auth/signout'}>Signout</Link>)} */}
-                        {status === 'unauthenticated' && (
-                            <Link href={'/api/auth/signin'} className='text-slate-600 text-base font-medium'>Signin</Link>)}
-                    </Box>
-                </Flex>
-
-
-            </Container>
-
-        </nav>
+                    
     )
 }
 
