@@ -7,6 +7,7 @@ import React  from 'react'
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 import { Issue } from '@prisma/client'
+import toast, { Toaster } from 'react-hot-toast'
 
 const AssignIssue = ({issue}: {issue: Issue}) => {
 
@@ -21,10 +22,14 @@ const AssignIssue = ({issue}: {issue: Issue}) => {
     if(isLoading) return  <Skeleton width='4' height='5' />
   
     return (
+        <>
         <Select.Root 
         defaultValue={issue.assignedToUserId || "unassigned"}
         onValueChange={ (userId)=>{
-              axios.patch(`/api/issue/${issue.id}`,{ assignedToUserId: userId === 'unassigned' ? null : userId,})
+              axios.patch(`/api/issue/${issue.id}`,{ assignedToUserId: userId === 'unassigned' ? null : userId,}).
+              catch(()=>[
+                toast.error("Change could'nt be saved")
+              ])
         }}>
             <Select.Trigger placeholder='unassigned' />
             <Select.Content>
@@ -43,6 +48,11 @@ const AssignIssue = ({issue}: {issue: Issue}) => {
 
             </Select.Content>
         </Select.Root>
+        <Toaster
+  position="bottom-right"
+  reverseOrder={false}
+/>
+        </>
     )
 }
 
