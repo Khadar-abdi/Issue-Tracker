@@ -6,8 +6,9 @@ import axios from 'axios'
 import React  from 'react'
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
+import { Issue } from '@prisma/client'
 
-const AssignIssue = () => {
+const AssignIssue = ({issue}: {issue: Issue}) => {
 
     const {data: users, isLoading, error}=useQuery<User[]>({
         queryKey: ['users'],
@@ -20,12 +21,17 @@ const AssignIssue = () => {
     if(isLoading) return  <Skeleton width='4' height='5' />
   
     return (
-        <Select.Root>
-            <Select.Trigger placeholder='Assign...' />
+        <Select.Root 
+        defaultValue={issue.assignedToUserId || "unassigned"}
+        onValueChange={ (userId)=>{
+              axios.patch(`/api/issue/${issue.id}`,{ assignedToUserId: userId === 'unassigned' ? null : userId,})
+        }}>
+            <Select.Trigger placeholder='unassigned' />
             <Select.Content>
                 <Select.Group>
                     <Select.Label> Suggestions </Select.Label>
-                    {users&& users?.map(user => 
+                    <Select.Item value='unassigned'> UnAssigned </Select.Item>
+                    {users?.map(user => 
                     (
                         <Select.Item  key={user.id} value={user.id}> {user.name} </Select.Item>
                     )

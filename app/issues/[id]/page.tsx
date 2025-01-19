@@ -28,14 +28,14 @@ const page = async ({ params }: props) => {
     return (
         // Issue Details
 
-        <div className='flex flex-row flex-wrap max-w-screen w-fit     '>
+        <div className='flex flex-row flex-wrap max-w-screen w-full     '>
             
                 <IssueDetails issue={issue}   />                
          
            { session && <div className='flex   justify-center  w-[30%]       mt-3  '>
             <div className=' flex  w-3/5   flex-col    gap-5 mt-3 flex-wrap  '>
 
-           <AssignIssue/>
+                <AssignIssue issue={issue}/>
                 <EditIssueButton  issueId={issue.id} />
                 <DeleteIssueButton issueId={issue.id} />
             </div>
