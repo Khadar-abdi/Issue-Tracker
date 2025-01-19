@@ -33,7 +33,7 @@ const page = async ({ params }: props) => {
                 <IssueDetails issue={issue}   />                
          
            { session && <div className='flex   justify-center  w-[30%]       mt-3  '>
-            <div className=' flex  w-3/5   flex-col    gap-5 mt-3   '>
+            <div className=' flex  w-3/5   flex-col    gap-5 mt-3 flex-wrap  '>
 
            <AssignIssue/>
                 <EditIssueButton  issueId={issue.id} />

@@ -6,6 +6,7 @@ import Navbar from './navbar'
 import "@radix-ui/themes/styles.css";
 import { Container, Theme, ThemePanel } from "@radix-ui/themes";
 import AuthProvider from "./auth/Provider"
+import QueryClientProvider from "./QueryClientProvider"
 
 
 
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} max-w-screen w-screen`}  >
+      <QueryClientProvider>
         <AuthProvider>
            
         <Theme accentColor="brown" radius="large" >
@@ -38,6 +40,7 @@ export default function RootLayout({
              </main>
         </Theme >
         </AuthProvider>
+        </QueryClientProvider>
       </body>
     </html>
   )

@@ -1,23 +1,43 @@
 'use client'
+import { User } from '@prisma/client'
 import { Select } from '@radix-ui/themes'
-import React from 'react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import React  from 'react'
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const AssignIssue = () => {
-  return (
-    <Select.Root>
-        <Select.Trigger  placeholder='Assign...' />
-        <Select.Content>
-        <Select.Group>
-        <Select.Label> Suggestions </Select.Label>
-        <Select.Item value='1'> Khader </Select.Item>
-        <Select.Item value='2'> Khader </Select.Item>
-        <Select.Item value='3'> Khader </Select.Item>
 
-        </Select.Group>
+    const {data: users, isLoading, error}=useQuery<User[]>({
+        queryKey: ['users'],
+        queryFn: ()=> axios.get('/api/users').then(res => res.data.user),
+        staleTime: 60*1000,
+        retry: 3
 
-        </Select.Content>
-    </Select.Root>
-  )
+    })
+
+    if(isLoading) return  <Skeleton width='4' height='5' />
+  
+    return (
+        <Select.Root>
+            <Select.Trigger placeholder='Assign...' />
+            <Select.Content>
+                <Select.Group>
+                    <Select.Label> Suggestions </Select.Label>
+                    {users&& users?.map(user => 
+                    (
+                        <Select.Item  key={user.id} value={user.id}> {user.name} </Select.Item>
+                    )
+                    )}
+                       
+
+
+                </Select.Group>
+
+            </Select.Content>
+        </Select.Root>
+    )
 }
 
 export default AssignIssue
