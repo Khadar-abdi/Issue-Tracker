@@ -4,6 +4,7 @@ import Link from '../../components/customLink'
 import React, { useState } from 'react'
 import IssueBadge from '../../components/IssueBadge'
 import { notFound } from 'next/navigation'
+import IssueActions from './IssueActions'
 
 
 const IssuePage = async() => {
@@ -18,11 +19,7 @@ const IssuePage = async() => {
  
   return (
     <div > 
-      <div className='my-5'>
-
-      <Button> <Link href={'/issues/new'}  >  New Issue </Link></Button> 
-      </div>
-
+      <IssueActions/>   
       <Table.Root variant='surface' >
         <Table.Header>
           <Table.Row>
