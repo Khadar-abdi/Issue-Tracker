@@ -5,12 +5,24 @@ import React, { useState } from 'react'
 import IssueBadge from '../../components/IssueBadge'
 import { notFound } from 'next/navigation'
 import IssueActions from './IssueActions'
-
-
-const IssuePage = async() => {
+import { Status } from '@prisma/client'
  
+
+
+interface props{
+ searchParams: {status: Status}
+}
+const IssuePage = async({searchParams}: props) => {
+  const SearchParams = await searchParams;
+  const statuses = Object.values(Status)
+  const status = statuses.includes(SearchParams.status) ? SearchParams.status : undefined
   
-  const Issues= await prisma.issue.findMany()
+  
+  const Issues= await prisma.issue.findMany({
+    where:{
+      status 
+    }
+  })
 
   if(!Issues) return notFound();
  
