@@ -5,7 +5,7 @@ import FilterIssue from './filterIssue'
 
 const IssueActions = () => {
   return (
- <div className='my-5 flex flex-row justify-between'>
+ <div className='flex flex-row justify-between'>
     <FilterIssue/>
 
       <Button> <Link href={'/issues/new'}  >  New Issue </Link></Button> 

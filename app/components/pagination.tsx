@@ -26,7 +26,7 @@ const Pagination = ({itemCount, currentPage, pageSize  }: props) => {
     }
 
   return (
-    <Flex gap='2' align='center' justify='center' className='py-4'>
+    <Flex gap='4' align='center' justify='center'  >
         <Text size='2' className='text-slate-600 font-sans'> page {currentPage}  of {pageCount}</Text>
         <Button  variant='soft' disabled={currentPage === 1} onClick={()=>ChangePage(1)}>
         <ChevronsLeft />
