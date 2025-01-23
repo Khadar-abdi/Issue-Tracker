@@ -18,7 +18,7 @@ const LeatestIssue = async () => {
     })
 
     return (
-        <Card>
+        <Card className='w-full'>
             <Heading>Leatest Issue</Heading>
             <Table.Root >
             <Table.Body >

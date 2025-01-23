@@ -20,7 +20,8 @@ interface props{
 const IssuePage = async({searchParams}: props) => {
 
   const pageSize = 10;
-  const Currentpage = parseInt(searchParams.page) || 1;
+  const Currentpage =   parseInt(searchParams.page) || 1;
+
  
   const SearchParams = await searchParams;
   const statuses = Object.values(Status)  
@@ -48,7 +49,7 @@ const IssuePage = async({searchParams}: props) => {
  
  
   return (
-    <Flex direction='column' gap='4' > 
+    <Flex direction='column' gap='4'  > 
       <IssueActions/>   
       <IssueTable searchParams={SearchParams} Issues={Issues}/>
      
