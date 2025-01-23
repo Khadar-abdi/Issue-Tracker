@@ -1,12 +1,15 @@
-import Pagination from './components/pagination'
+ 
+import { Container } from '@radix-ui/themes'
+import LeatestIssue from './LeatestIssue'
 
  
-async function Home({searchParams}: {searchParams: {page: string}}) {
+async function Home( ) {
  
   return (
-    <div>
-    Dashbaord
-    </div>
+    <Container>
+
+      <LeatestIssue />
+    </Container>
   )
 }
 export default Home
