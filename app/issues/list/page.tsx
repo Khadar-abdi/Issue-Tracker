@@ -9,12 +9,13 @@ import { notFound } from 'next/navigation'
 import IssueActions from './IssueActions'
 import { Issue, Status } from '@prisma/client'
 import { ArrowUp, ArrowUpFromDotIcon } from 'lucide-react'
+import Pagination from '@/app/components/pagination'
  
  
 
 
 interface props{
- searchParams: {status: Status, orderBy: keyof Issue , sort: "asc" | "desc";}
+ searchParams: {status: Status, orderBy: keyof Issue , page: string}
 }
 
 const columns: {label : string; value: keyof Issue; className? : string}[] = [
@@ -23,20 +24,27 @@ const columns: {label : string; value: keyof Issue; className? : string}[] = [
   { label : 'createdAt', value: 'createdAt', className: 'hidden md:table-cell font-medium text-slate-600'  }
 ]
 const IssuePage = async({searchParams}: props) => {
+
+  const pageSize = 10;
+  const Currentpage = parseInt(searchParams.page) || 1;
  
   const SearchParams = await searchParams;
   const statuses = Object.values(Status)  
   const status = statuses.includes(SearchParams.status) ? SearchParams.status : undefined
   const orderBy = columns.map((column)=> column.value).includes(SearchParams.orderBy) ? {[SearchParams.orderBy]: 'asc'} : undefined
-
+  const where = {status}
  
   
   const Issues= await prisma.issue.findMany({
-    where:{
-      status   
-    },
-    orderBy 
+    where ,
+    orderBy,
+    skip: (Currentpage - 1) * pageSize,
+    take: pageSize
   })
+
+  const issueCount= await prisma.issue.count({
+    where 
+  }) 
 
   if(!Issues) return notFound();
  
@@ -44,7 +52,7 @@ const IssuePage = async({searchParams}: props) => {
  
  
   return (
-    <div > 
+    <div  > 
       <IssueActions/>   
       <Table.Root variant='surface' >
         <Table.Header>
@@ -80,6 +88,7 @@ const IssuePage = async({searchParams}: props) => {
         </Table.Body>
 
       </Table.Root>
+        <Pagination currentPage={Currentpage} pageSize={pageSize} itemCount={issueCount}  />
        
                 
     </div>

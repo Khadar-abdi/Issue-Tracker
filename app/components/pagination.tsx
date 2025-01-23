@@ -16,16 +16,17 @@ const Pagination = ({itemCount, currentPage, pageSize  }: props) => {
 
     const pageCount = Math.ceil(itemCount/pageSize)
     if(pageCount <= 1) return null
+  
 
     const ChangePage =(page: number)=>{
         const params = new URLSearchParams(searchParams);
         params.set('page', page.toString());
         const query = params.toString() ? `?${params.toString()}` : ''
-        router.push(`/${query}`)
+        router.push(`/issues/list${query}`)
     }
 
   return (
-    <Flex gap='2' align='center' justify='center'>
+    <Flex gap='2' align='center' justify='center' className='py-4'>
         <Text size='2' className='text-slate-600 font-sans'> page {currentPage}  of {pageCount}</Text>
         <Button  variant='soft' disabled={currentPage === 1} onClick={()=>ChangePage(1)}>
         <ChevronsLeft />
