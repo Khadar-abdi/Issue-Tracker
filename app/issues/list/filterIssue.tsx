@@ -16,7 +16,7 @@ const Statuses: {key : number, label: string, value?: Status}[] =[
 const FilterIssue = () => {
     const router = useRouter();
     const searchParams = useSearchParams();
-    console.log( searchParams.get('orderBy'))
+  
 
     
 

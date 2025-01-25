@@ -22,9 +22,7 @@ const SimpleMdeReact = dynamic(() => import('react-simplemde-editor'),
 
 type IssueForm = z.infer<typeof IssueSchema>;
 
-interface props{
-    issue?: Issue
-}
+ 
 
 
 const IssueForm =   ({issue}: {issue?: Issue}) => {

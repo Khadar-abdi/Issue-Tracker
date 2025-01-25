@@ -7,6 +7,7 @@ import { Issue, Status } from '@prisma/client'
 import Pagination from '@/app/components/pagination'
 import IssueTable, { columnsName, IssueQuery } from './issueTable'
 import { Flex } from '@radix-ui/themes'
+import { Metadata } from 'next'
 
  
  
@@ -36,7 +37,8 @@ const IssuePage = async({searchParams}: props) => {
     where ,
     orderBy,
     skip: (Currentpage - 1) * pageSize,
-    take: pageSize
+    take: pageSize,
+   
   })
 
   const issueCount= await prisma.issue.count({
@@ -61,5 +63,12 @@ const IssuePage = async({searchParams}: props) => {
 }
 
 export const dynamic = 'force-dynamic';
+
+export const  metadata: Metadata ={
+
+  title: 'Issue-Tracker - Issue List',
+  description: 'View all of the Issue project',
+ 
+}
 
 export default IssuePage

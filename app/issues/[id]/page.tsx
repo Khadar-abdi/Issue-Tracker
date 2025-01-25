@@ -6,6 +6,9 @@ import DeleteIssueButton from './deleteIssueButton'
 import { getServerSession } from 'next-auth'
 import authOptions from '@/app/auth/authOptions'
 import AssignIssue from './assignIssue'
+import Comments from './comments'
+import AddComment from './addComment'
+import { Container, Flex, Grid } from '@radix-ui/themes'
 
 
 interface props {
@@ -15,7 +18,7 @@ interface props {
 const page = async ({ params }: props) => {
 
     const session = await getServerSession(authOptions)
- 
+
     const issue = await prisma.issue.findUnique({
         where: {
             id: parseInt(params.id)
@@ -24,25 +27,46 @@ const page = async ({ params }: props) => {
 
     if (!issue)
         notFound();
-  
+
     return (
         // Issue Details
+        
+        
+            <Flex direction='row' gap='2' className='col-span-2 w-full' align='start' >
+            <Flex direction='column' className='  w-2/3 ' gap='2'  >
+                <IssueDetails issue={issue} />
+                <Comments issueId={issue.id} />
+            </Flex>
+            <Flex direction='row' gap='2' className=' p-5 w-1/3'>
+                {session && <div className='flex  flex-col  justify-center    w-full gap-5     '>
+                     
 
-        <div className='flex flex-row flex-wrap max-w-screen w-full     '>
-            
-                <IssueDetails issue={issue}   />                
-         
-           { session && <div className='flex   justify-center  w-[30%]       mt-3  '>
-            <div className=' flex  w-3/5   flex-col    gap-5 mt-3 flex-wrap  '>
+                        <AssignIssue issue={issue} />
+                        <EditIssueButton issueId={issue.id} />
+                        <DeleteIssueButton issueId={issue.id} />
 
-                <AssignIssue issue={issue}/>
-                <EditIssueButton  issueId={issue.id} />
-                <DeleteIssueButton issueId={issue.id} />
-            </div>
-            </div>}
+                        <AddComment issueId={issue.id} />
  
-        </div>
+                </div>}
+            </Flex>
+            </Flex>
+     
+     
+
+        
     )
+}
+
+export async function generateMetadata({params}: props) {
+    const issue = await prisma.issue.findUnique({
+        where: {
+            id: parseInt(params.id)
+        }
+    })
+    return {
+        title: issue?.title,
+        description: `Details of issue ${issue?.id}`
+    }
 }
 
 export default page

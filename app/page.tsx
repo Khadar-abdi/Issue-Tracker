@@ -4,6 +4,7 @@ import LeatestIssue from './LeatestIssue'
 import IssuesSummary from './IssuesSummary'
 import prisma from '@/prisma/client'
 import IssueChart from './issueChart'
+import { Metadata } from 'next'
 
  
 async function Home( ) {
@@ -41,4 +42,12 @@ async function Home( ) {
     </Grid>
   )
 }
+
+export const  metadata: Metadata ={
+
+  title: 'Issue-Tracker - Dashboard',
+  description: 'Summary of the Issue project',
+ 
+}
+
 export default Home
