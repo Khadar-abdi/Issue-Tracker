@@ -9,21 +9,22 @@ import AssignIssue from './assignIssue'
 import Comments from './comments'
 import AddComment from './addComment'
 import { Container, Flex, Grid } from '@radix-ui/themes'
+import { cache } from 'react'
 
 
 interface props {
     params: { id: string }
 }
 
+const fetchIssue = cache((issueId: number)=>    prisma.issue.findUnique({where: {id: issueId}}))
+        
+    
+
 const page = async ({ params }: props) => {
 
     const session = await getServerSession(authOptions)
 
-    const issue = await prisma.issue.findUnique({
-        where: {
-            id: parseInt(params.id)
-        }
-    })
+    const issue = await fetchIssue(parseInt(params.id))
 
     if (!issue)
         notFound();
@@ -58,11 +59,7 @@ const page = async ({ params }: props) => {
 }
 
 export async function generateMetadata({params}: props) {
-    const issue = await prisma.issue.findUnique({
-        where: {
-            id: parseInt(params.id)
-        }
-    })
+    const issue = await  fetchIssue(parseInt(params.id))
     return {
         title: issue?.title,
         description: `Details of issue ${issue?.id}`
