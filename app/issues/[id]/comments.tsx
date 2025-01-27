@@ -14,11 +14,13 @@ const Comments = async ({ issueId }: { issueId: number }) => {
     })
 
 
-
+  
 
     return (
+        <>
         <Card>
-            {comments.map(comment => (
+        {comments ? (
+             comments.map(comment => (
                 <Flex key={comment.id} direction='row' className=' gap-3 px-3 py-5 border-b-2 border-slate-50 items-start  '   >
                    
 
@@ -31,9 +33,16 @@ const Comments = async ({ issueId }: { issueId: number }) => {
 
 
                 </Flex>
-            ))}
+            ))
+        ) : (
+            <p className='text-slate-400 text-sm justify-center items-center'>No comments available</p>
+        )}
 
+           
+
+  
         </Card>
+        </>
     )
 }
 

@@ -9,7 +9,8 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 const AssignIssue = ({issue}: {issue: Issue}) => {
 
-    const {data: users, isLoading, error}=useUser()
+    const {data: users, isLoading, error}=useUser();
+  
 
     if(isLoading) return  <Skeleton width='4' height='5' />
 
