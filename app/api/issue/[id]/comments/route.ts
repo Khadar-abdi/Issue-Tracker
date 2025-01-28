@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { type NextRequest, NextResponse} from 'next/server'
 import { getServerSession } from 'next-auth';
 import prisma from '@/prisma/client';
 import { CommentSchema } from '@/Schemas/validationSchema';
