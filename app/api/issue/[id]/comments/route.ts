@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } } // Fixing the type here
+  context: { params: { id: string } } // Fixing the type here
 ) {
   const session = await getServerSession(authOptions);
   if (!session) {
@@ -15,6 +15,7 @@ export async function POST(
 
   const body = await request.json();
   const validation = CommentSchema.safeParse(body);
+  const {id}= context.params
 
   if (!validation.success) {
     return NextResponse.json(
@@ -26,7 +27,7 @@ export async function POST(
   const newComment = await prisma.comment.create({
     data: {
       content: validation.data.content,
-      issueId: parseInt(params.id, 10), // Ensure `id` is converted to a number
+      issueId: parseInt(id), // Ensure `id` is converted to a number
       userId: session.user.id,
     },
   });
