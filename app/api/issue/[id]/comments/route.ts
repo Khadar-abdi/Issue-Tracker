@@ -17,6 +17,8 @@ export async function POST(request: NextRequest,{params}: {params: { id: string}
         { status: 400 }
       );
     }
+
+    console.log(params.id)
   
     const newComment = await prisma.comment.create({
       data: {
