@@ -21,7 +21,7 @@ interface props {
 }
 
 const AddComment = ({   issueId }: props) => {
-    const [ error, setError ] = React.useState<any | null>(null);
+    
     const router = useRouter();
 
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<FormComment>({
@@ -33,12 +33,19 @@ const AddComment = ({   issueId }: props) => {
             const res = await axios.post(`/api/issue/${issueId}/comments`, data);
             reset();
             router.refresh();
+            //  data
+            // //   userId: session?.user.id,
+            // //   issueId: issueId
+
+            // router.push('/issues/list')
+
            
 
+
         } catch (error) {
-          
+            console.error(error);
             // alert(error.response?.data?.error || "Failed to submit comment");
-            setError(error || "Failed to submit comment");
+            
         }
     }
     return (
