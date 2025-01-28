@@ -4,7 +4,7 @@ import prisma from '@/prisma/client';
 import { CommentSchema } from '@/Schemas/validationSchema';
 import authOptions from '@/app/auth/authOptions';
 
-export async function POST(request: NextRequest,  { params }: { params: { id: string } }) {
+export async function POST(request: Request,  { params }: { params: { id: string } }) {
     const session = await getServerSession(authOptions);
     if (!session) return NextResponse.json({}, { status: 401 });
 
