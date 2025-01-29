@@ -54,23 +54,19 @@ if(!session) return NextResponse.json({},{ status: 401})
 
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE( request: NextRequest,{params}: {params: { id: string}}){
     const session = await getServerSession(authOptions);
-    if (!session) return NextResponse.json({}, { status: 401 });
+if(!session) return NextResponse.json({},{ status: 401})
 
-    const id = parseInt(params.id);
-
-    const issue = await prisma.issue.findUnique({
-        where: { id },
-    });
-
-    if (!issue) {
-        return NextResponse.json({ error: "Invalid issue" }, { status: 404 });
+     const { id } =  params; 
+     const issue= await prisma.issue.findUnique({
+        where:{  id: parseInt(id) }, 
+    })
+    if(!issue){
+        return  NextResponse.json({error: "invalid Issue"}, { status: 404})
     }
-
-    await prisma.issue.delete({
-        where: { id },
-    });
-
-    return NextResponse.json({ message: "Deleted issue" }, { status: 201 });
+      await prisma.issue.delete({
+        where:{  id: parseInt(id) }, 
+    })
+    return NextResponse.json('deleted issue', {status: 201});
 }
