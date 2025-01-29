@@ -10,6 +10,7 @@ export async function PATCH( request: NextRequest,{params}: {params: { id: strin
     const session = await getServerSession(authOptions);
 if(!session) return NextResponse.json({},{ status: 401})
 
+    const { id } = await params;
     const body = await request.json();
     const validation =  PatchIssueSchema.safeParse(body);
 
@@ -33,7 +34,7 @@ if(!session) return NextResponse.json({},{ status: 401})
 
 
    const issue= await prisma.issue.findUnique({
-        where:{  id: parseInt(params.id) },
+        where:{  id: parseInt(id) },
        
     })
 
@@ -41,7 +42,7 @@ if(!session) return NextResponse.json({},{ status: 401})
         return  NextResponse.json({error: "invalid Issue"}, { status: 404})
 
     const UpdatedIssue = await prisma.issue.update({
-        where:{  id: parseInt(params.id) },
+        where:{  id: parseInt(id) },
         data:{
             title,
             description,
@@ -57,9 +58,11 @@ export async function DELETE( request: NextRequest,{params}: {params: { id: stri
     const session = await getServerSession(authOptions);
 if(!session) return NextResponse.json({},{ status: 401})
 
+    const { id } = await params;
+
 
      const issue= await prisma.issue.findUnique({
-        where:{  id: parseInt(params.id) },
+        where:{  id: parseInt(id) },
        
     })
 
@@ -67,7 +70,7 @@ if(!session) return NextResponse.json({},{ status: 401})
         return  NextResponse.json({error: "invalid Issue"}, { status: 404})
     }
       await prisma.issue.delete({
-        where:{  id: parseInt(params.id) },
+        where:{  id: parseInt(id) },
        
     })
 

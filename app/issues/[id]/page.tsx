@@ -20,11 +20,13 @@ const fetchIssue = cache((issueId: number)=>    prisma.issue.findUnique({where: 
     
 
 const page = async ({ params }: props) => {
+
+    const { id } = await params
  
 
     const session = await getServerSession(authOptions)
 
-    const issue = await fetchIssue(parseInt(params.id))
+    const issue = await fetchIssue(parseInt(id))
 
     if (!issue)
         notFound();
