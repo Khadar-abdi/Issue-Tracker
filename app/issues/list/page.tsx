@@ -19,12 +19,13 @@ interface props{
 
 
 const IssuePage = async({searchParams}: props) => {
+  
 
+  const SearchParams = await searchParams;
   const pageSize = 10;
-  const Currentpage =   parseInt(searchParams.page) || 1;
+  const Currentpage =   parseInt(SearchParams.page) || 1;
 
  
-  const SearchParams = await searchParams;
   const statuses = Object.values(Status)  
   const status = statuses.includes(SearchParams.status) ? SearchParams.status : undefined
   const orderBy = columnsName

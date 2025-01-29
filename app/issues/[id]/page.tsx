@@ -59,7 +59,8 @@ const page = async ({ params }: props) => {
 }
 
 export async function generateMetadata({params}: props) {
-    const issue = await  fetchIssue(parseInt(params.id))
+    const {id } = await params 
+    const issue = await  fetchIssue(parseInt(id))
     return {
         title: issue?.title,
         description: `Details of issue ${issue?.id}`
