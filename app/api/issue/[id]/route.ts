@@ -55,7 +55,7 @@ export async function PATCH( request: NextRequest,{params}: {params: { id: strin
 }
 
 type Params = Promise<{ id: string }>
-export async function DELETE( request: NextRequest,{params}: {params: Params}){
+export async function DELETE( request: NextRequest,{params}: {params: { id: string}}){
     const session = await getServerSession(authOptions);        
 if(!session) return NextResponse.json({},{ status: 401})
 
