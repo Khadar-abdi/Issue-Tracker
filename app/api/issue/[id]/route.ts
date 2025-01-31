@@ -53,23 +53,26 @@ export async function PATCH( request: NextRequest,{params}: {params: { id: strin
     return NextResponse.json(UpdatedIssue, {status: 201});
     
 }
+type Params = Promise<{ id: string }>;
 
-type Params = Promise<{ id: string }>
-export async function DELETE( request: NextRequest,{params}: {params: { id: string}}){
-    const session = await getServerSession(authOptions);        
-if(!session) return NextResponse.json({},{ status: 401})
+export async function DELETE(request: NextRequest, params: Params) {
+    const session = await getServerSession(authOptions);
+    if (!session) return NextResponse.json({}, { status: 401 });
 
     const resolvedParams = await params; // ✅ Await the Promise before using it
     const id = resolvedParams.id;
 
-     const issue= await prisma.issue.findUnique({
-        where:{  id: parseInt(id) }, 
-    })
-    if(!issue){
-        return  NextResponse.json({error: "invalid Issue"}, { status: 404})
+    const issue = await prisma.issue.findUnique({
+        where: { id: parseInt(id) },
+    });
+
+    if (!issue) {
+        return NextResponse.json({ error: "invalid Issue" }, { status: 404 });
     }
-      await prisma.issue.delete({
-        where:{  id: parseInt(id) }, 
-    })
-    return NextResponse.json('deleted issue', {status: 201});
+
+    await prisma.issue.delete({
+        where: { id: parseInt(id) },
+    });
+
+    return NextResponse.json("deleted issue", { status: 201 });
 }
