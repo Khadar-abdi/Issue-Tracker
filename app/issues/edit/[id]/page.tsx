@@ -5,10 +5,8 @@ import React from "react"
 
  
 
-interface props{
-  params: { id: string}
-}
-const EditIssuePage = async ({params}: props) => {
+ 
+const EditIssuePage = async ({ params }: {params: Promise<{ id: string }> }) => {
   const { id } = await params
 
   const issue= await prisma.issue.findUnique({
