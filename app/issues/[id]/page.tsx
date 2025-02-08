@@ -11,15 +11,15 @@ import { Container, Flex, Grid } from '@radix-ui/themes'
 import { cache } from 'react'
 
 
-interface props {
-    params: { id: string }
-}
+// interface props {
+//     >
+// }
 
 const fetchIssue = cache((issueId: number)=>    prisma.issue.findUnique({where: {id: issueId}}))
         
     
 
-const page = async ({ params }: props) => {
+const page = async ({ params }: {params: Promise<{ id: string }> }) => {
 
     const { id } = await params
  
@@ -60,7 +60,7 @@ const page = async ({ params }: props) => {
     )
 }
 
-export async function generateMetadata({params}: props) {
+export async function generateMetadata({params}: {params: Promise<{ id: string }> }) {
     const {id } = await params 
     const issue = await  fetchIssue(parseInt(id))
     return {
