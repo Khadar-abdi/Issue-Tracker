@@ -54,13 +54,13 @@ export async function PATCH( request: NextRequest,{params}: {params: { id: strin
     
 }
 
-type Params = Promise<{ id: string }>
-export async function DELETE( request: NextRequest,{params}: {params: Params}){
+ 
+export async function DELETE( request: NextRequest,{params}: {params: Promise<{ id: string }> }){
     const session = await getServerSession(authOptions);        
-if(!session) return NextResponse.json({},{ status: 401})
+    if(!session) return NextResponse.json({},{ status: 401})
 
-    const {id} = await params; // ✅ Await the Promise before using it
-    console.log(id)
+        const {id} = await params// ✅ Await the Promise before using it
+ 
     
 
      const issue= await prisma.issue.findUnique({
