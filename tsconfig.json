@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "ESNext",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "incremental": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx", // Updated JSX transform
     "types": ["@types/react", "@types/react-dom"],
+    "jsxImportSource": "react", // Required for React 17+ with the new JSX transform
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
+    "target": "es5",
+    "forceConsistentCasingInFileNames": true,
     "plugins": [
       {
         "name": "next"
