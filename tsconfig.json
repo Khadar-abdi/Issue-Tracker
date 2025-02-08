@@ -10,8 +10,9 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
+    "isolatedModules": true, 
+    "jsx": "react-jsx", // For React 17 and 18+
+    "types": ["@types/react", "@types/node"],
     "incremental": true,
     "plugins": [
       {
