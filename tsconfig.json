@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "ESNext",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "isolatedModules": true, 
-    "jsx": "react-jsx", // For React 17 and 18+
-    "types": ["@types/react", "@types/node"],
+    "isolatedModules": true,
+    "jsx": "preserve",
     "incremental": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["@types/react", "@types/react-dom"],
     "plugins": [
       {
         "name": "next"
