@@ -1,19 +1,20 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "es2015"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react",
-    "jsxImportSource": "react",
     "incremental": true,
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["react", "react-dom"],
+    "jsx": "react-jsx",
+    "moduleResolution": "node",  
     "plugins": [
       {
         "name": "next"
