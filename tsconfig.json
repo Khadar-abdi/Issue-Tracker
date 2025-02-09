@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -10,10 +11,8 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "jsx": "react-jsx",
     "incremental": true,
-    "types": ["@types/react", "@types/react-dom"],
-    "jsx": "preserve",  // Check this line if missing.
-    "lib": ["dom", "es2015"],
     "plugins": [
       {
         "name": "next"
