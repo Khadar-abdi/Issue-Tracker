@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -11,9 +10,10 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "incremental": true,
-    "types": ["react", "react-dom"],
+    "jsx": "react-jsx", // For React 17 and above
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["@types/react", "@types/react-dom"],
     "plugins": [
       {
         "name": "next"
