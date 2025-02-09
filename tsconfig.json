@@ -12,7 +12,7 @@
     "isolatedModules": true,
     "incremental": true,
     "types": ["@types/react", "@types/react-dom"],
-    "jsx": "react",  // Check this line if missing.
+    "jsx": "preserve",  // Check this line if missing.
     "lib": ["dom", "es2015"],
     "plugins": [
       {
