@@ -16,7 +16,7 @@
     "isolatedModules": true,
     "incremental": true,
     "typeRoots": ["./node_modules/@types"],
-    "types": ["react"],
+    "types": ["react", "react-dom", "node"],
     "jsx": "react-jsx",
     "moduleResolution": "node",  
     "plugins": [
