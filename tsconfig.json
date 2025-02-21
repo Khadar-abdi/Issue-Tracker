@@ -15,7 +15,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true,
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
     "types": ["react", "react-dom", "node"],
     "jsx": "react-jsx",
     "moduleResolution": "node",  
