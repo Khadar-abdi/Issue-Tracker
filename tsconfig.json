@@ -19,22 +19,31 @@
       "./node_modules/@types",
       "./types"
     ],
-    "types": ["react", "react-dom", "node"],
-    "jsx": "react-jsx",
-    "moduleResolution": "node",  
+    "types": [
+      "react",
+      "react-dom",
+      "node"
+    ],
+    "jsx": "preserve",
+    "moduleResolution": "node",
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": [
+        "./*"
+      ]
     }
   },
   "include": [
-    "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "next-env.d.ts",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
