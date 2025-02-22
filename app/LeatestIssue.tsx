@@ -1,5 +1,4 @@
-import { Avatar, Card, Flex,  Table } from '@radix-ui/themes'
-import { Heading } from '@radix-ui/themes/dist/cjs/index.js'
+import { Avatar, Card, Flex,  Heading,  Table } from '@radix-ui/themes'
 import React from 'react'
 import IssueBadge from './components/IssueBadge'
 import prisma from '@/prisma/client'

@@ -27,3 +27,21 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(newIssue, { status: 201 });
 }
+
+export async function GET(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
+
+  // lattest  5 issue 
+  const Issues = await prisma.issue.findMany({
+    take: 5,
+    orderBy: {
+        createdAt: 'desc'
+    },
+    include:{
+        assignedUser: true
+    }
+})
+
+return NextResponse.json(Issues, { status: 200 })
+}
