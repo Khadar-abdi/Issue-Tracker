@@ -17,7 +17,7 @@ export async function PATCH( request: NextRequest,{params}:  {params: Promise<{ 
         if(!validation.success){
             return NextResponse.json({error: validation.error.format()}, {status: 400});
         }
-        const { assignedToUserId, description, title }= body
+        const { assignedToUserId, description, title, status }= body
         
         
         
@@ -46,7 +46,8 @@ export async function PATCH( request: NextRequest,{params}:  {params: Promise<{ 
         data:{
             title,
             description,
-            assignedToUserId
+            assignedToUserId,
+            status
         }
     })
     

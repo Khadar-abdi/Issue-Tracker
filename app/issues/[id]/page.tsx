@@ -11,6 +11,7 @@ import { Container, Flex, Grid } from '@radix-ui/themes'
 import { cache } from 'react'
 import AddComment from './addComment'
 import Comments from './comments'
+import AssignStatus from './assignStatus'
 
 
 // interface props {
@@ -48,6 +49,7 @@ const page = async ({ params }: {params: Promise<{ id: string }> }) => {
                      
 
                         <AssignIssue issue={issue} />
+                        <AssignStatus issue={issue} />
                         <EditIssueButton issueId={issue.id} />
                         <DeleteIssueButton issueId={issue.id} />
                         <AddComment issueId={issue.id} />
