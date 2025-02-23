@@ -16,8 +16,9 @@ const IssueDetails = ({issue}: {issue: Issue}) => {
 
 
                 <div className='shadow-sm shadow-[#ffe396] px-5 py-5 '>
-
-                    <ReactMarkdown className='text-slate-800  w-full text-base font-sans tracking-tight mt-2 text-justify'>{issue?.description}</ReactMarkdown>
+                    <div className='text-slate-800 w-full text-base font-sans tracking-tight mt-2 text-justify'>
+                        <ReactMarkdown>{issue?.description}</ReactMarkdown>
+                    </div>
                 </div>
                
     </div>

@@ -9,6 +9,8 @@ import AssignIssue from './assignIssue'
  
 import { Container, Flex, Grid } from '@radix-ui/themes'
 import { cache } from 'react'
+import AddComment from './addComment'
+import Comments from './comments'
 
 
 // interface props {
@@ -38,6 +40,7 @@ const page = async ({ params }: {params: Promise<{ id: string }> }) => {
             <Flex direction='row' gap='2' className='col-span-2 w-full' align='start' >
             <Flex direction='column' className='  w-2/3 ' gap='2'  >
                 <IssueDetails issue={issue} />
+                <Comments issueId={issue.id} />
             
             </Flex>
             <Flex direction='row' gap='2' className=' p-5 w-1/3'>
@@ -47,6 +50,8 @@ const page = async ({ params }: {params: Promise<{ id: string }> }) => {
                         <AssignIssue issue={issue} />
                         <EditIssueButton issueId={issue.id} />
                         <DeleteIssueButton issueId={issue.id} />
+                        <AddComment issueId={issue.id} />
+                      
 
                     
  
